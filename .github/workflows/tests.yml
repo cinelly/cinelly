@@ -11,4 +11,4 @@ jobs:
         run: npm install -g pnpm
         
       - uses: actions/checkout@v2
-      - run: cd apps/expertises && pnpm run test
+      - run: pnpm run test
