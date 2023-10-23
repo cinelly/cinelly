@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: install pnpm
         run: npm install -g pnpm
+
+      - name: install packages
+        run: RUN pnpm install -r
         
       - uses: actions/checkout@v2
       - run: pnpm run test
