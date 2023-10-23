@@ -16,7 +16,6 @@ async function bootstrap() {
       queue: 'expertises',
     },
   });
-  console.log('sdfsdf')
   app.useLogger(app.get(Logger));
   await app.startAllMicroservices();
   await app.listen(configService.get('PORT'));
