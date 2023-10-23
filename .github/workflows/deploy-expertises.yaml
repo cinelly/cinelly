@@ -26,8 +26,7 @@ jobs:
         run: doctl registry login --expiry-seconds 600
 
       - name: Tag image 
-        run:
-          docker tag expertises registry.digitalocean.com/cinelly-container-registry/expertises
+        run: docker tag expertises registry.digitalocean.com/cinelly-container-registry/expertises
           
       - name: Push image to DO Container Registry 
         run: docker push registry.digitalocean.com/cinelly-container-registry/expertises
