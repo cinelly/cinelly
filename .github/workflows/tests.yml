@@ -7,11 +7,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: install pnpm
-        run: npm install -g pnpm
-
-      - name: install packages
-        run: pnpm install -r
-        
       - uses: actions/checkout@v2
-      - run: pnpm run test
+      - run: npm install -g pnpm && pnpm install -r && pnpm run test
