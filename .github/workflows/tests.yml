@@ -1,0 +1,14 @@
+name: tests
+
+on:
+  pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install pnpm
+        run: npm install -g pnpm
+        
+      - uses: actions/checkout@v2
+      - run: cd apps/expertises && pnpm run test
