@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: expertises
+  name: expertises
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expertises
+  template:
+    metadata:
+      labels:
+        app: expertises
+    spec:
+      containers:
+        - image: registry.digitalocean.com/cinelly-container-registry/expertises
+          name: expertises
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  key: connectionString
+                  name: mongodb
+            - name: PORT
+              value: '3001'
+            - name: MICROSERVICE_PORT
+              value: '30011'
+          ports:
+            - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: expertises
+  name: expertises
+spec:
+  selector:
+    app: expertises
+  ports:
+    - name: expertises
+      port: 3001
+      protocol: TCP
+      targetPort: 3001
+  type: NodePort
+
+

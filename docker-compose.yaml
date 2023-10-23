@@ -1,0 +1,29 @@
+services:
+  jobs:
+    build:
+      context: .
+      dockerfile: jobs.Dockerfile
+      target: development
+    command: pnpm run start:dev jobs
+    env_file:
+      - apps/jobs/.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+  expertises:
+    build:
+      context: .
+      dockerfile: expertises.Dockerfile
+      target: development
+    command: pnpm run start:dev expertises
+    env_file:
+      - apps/expertises/.env
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - 5672:5672

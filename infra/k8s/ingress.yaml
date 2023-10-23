@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cinelly
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /expertises/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: expertises
+                port:
+                  number: 3001
+          - path: /jobs/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: jobs
+                port:
+                  number: 3000

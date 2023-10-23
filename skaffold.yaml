@@ -1,0 +1,19 @@
+apiVersion: skaffold/v4beta7
+kind: Config
+metadata:
+  name: cinelly
+build:
+  artifacts:
+    - image: registry.digitalocean.com/cinelly-container-registry/expertises
+      context: .
+      docker:
+        dockerfile: expertises.Dockerfile
+    - image: registry.digitalocean.com/cinelly-container-registry/jobs
+      context: .
+      docker:
+        dockerfile: jobs.Dockerfile
+manifests:
+  rawYaml:
+    - infra/k8s/expertises.yaml
+    - infra/k8s/ingress.yaml
+    - infra/k8s/jobs.yaml

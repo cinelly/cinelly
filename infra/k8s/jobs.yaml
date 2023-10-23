@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jobs
+  name: jobs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobs
+  template:
+    metadata:
+      labels:
+        app: jobs
+    spec:
+      containers:
+        - image: registry.digitalocean.com/cinelly-container-registry/jobs
+          name: jobs
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  key: connectionString
+                  name: mongodb
+            - name: PORT
+              value: '3000'
+            - name: EXPERTISES_PORT
+              value: '30011'
+            - name: EXPERTISES_HOST
+              value: 'expertises'
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jobs
+  name: jobs
+spec:
+  selector:
+    app: jobs
+  ports:
+    - name: jobs
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  type: NodePort
