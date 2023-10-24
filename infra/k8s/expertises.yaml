@@ -45,6 +45,3 @@ spec:
       protocol: TCP
       targetPort: 3001
   type: NodePort
-#sadasd
-
-
