@@ -4,7 +4,8 @@ metadata:
   name: cinelly
 spec:
   rules:
-    - http:
+    - host: www.app.cinelly.com
+      http:
         paths:
           - path: /expertises/*
             pathType: ImplementationSpecific
