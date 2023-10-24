@@ -1,4 +1,4 @@
-name: deploy-expertise
+name: deploy-expertises
 
 on:
   push:
