@@ -1,0 +1,37 @@
+name: deploy-jobs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/jobs/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Build docker
+        run:  docker buildx build -t jobs -f ./jobs.Dockerfile --platform linux/amd64 .
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Log in to DO Container Registry
+        run: doctl registry login --expiry-seconds 600
+
+      - name: Tag image
+        run: docker tag jobs registry.digitalocean.com/cinelly-container-registry/jobs
+
+      - name: Push image to DO Container Registry
+        run: docker push registry.digitalocean.com/cinelly-container-registry/jobs
+
+      - run: doctl kubernetes cluster kubeconfig save cinelly-k8s
+      - run: kubectl rollout restart deployment jobs
+
+
