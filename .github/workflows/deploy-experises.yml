@@ -3,7 +3,7 @@ name: deploy-expertises
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'apps/expertises/**'
 
