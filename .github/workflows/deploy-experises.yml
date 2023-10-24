@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build docker
-        run:  docker buildx build -t expertises -f ./expertise.Dockerfile --platform linux/amd64 .
+        run:  docker buildx build -t expertises -f ./expertises.Dockerfile --platform linux/amd64 .
 
       - name: Install doctl 
         uses: digitalocean/action-doctl@v2
