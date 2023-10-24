@@ -26,10 +26,10 @@ import { JobsRepository } from './jobs.repository';
       {
         name: EXPERTISE_SERVICE,
         useFactory: (configService: ConfigService) => ({
-          transport: Transport.RMQ,
+          transport: Transport.TCP,
           options: {
-            urls: [configService.getOrThrow<string>('RABBITMQ_URI')],
-            queue: 'expertises',
+            host: configService.get('EXPERTISES_HOST'),
+            port: configService.get('EXPERTISES_PORT'),
           },
         }),
         inject: [ConfigService],
