@@ -30,3 +30,7 @@ jobs:
           
       - name: Push image to DO Container Registry 
         run: docker push registry.digitalocean.com/cinelly-container-registry/expertises
+
+      - run: doctl kubernetes cluster kubeconfig save cinelly-k8s
+      - run: kubectl rollout restart deployemnt expertises
+      
