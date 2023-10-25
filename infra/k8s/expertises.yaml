@@ -35,7 +35,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
-    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.cinelly.app'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.cinelly.online'
   labels:
     app: expertises
   name: expertises
