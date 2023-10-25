@@ -7,14 +7,14 @@ spec:
     - host: www.cinelly.app
       http:
         paths:
-          - path: /expertises/*
+          - path: /expertises/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
                 name: expertises
                 port:
                   number: 3001
-          - path: /jobs/*
+          - path: /jobs/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
