@@ -44,4 +44,3 @@ spec:
       port: 3001
       protocol: TCP
       targetPort: 3001
-  type: NodePort
