@@ -1,10 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: backend
   name: cinelly
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      cert-manager.io/issuer: letsencrypt-nginx
+      nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
   rules:
     - host: www.cinelly.online
