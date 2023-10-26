@@ -20,5 +20,5 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - run: doctl kubernetes cluster kubeconfig save cinelly-k8s
-      - run: kubectl apply -f infra/k8s
+      - run: kubectl apply -f k8s/cinelly
       
