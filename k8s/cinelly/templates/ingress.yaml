@@ -8,6 +8,10 @@ metadata:
       cert-manager.io/issuer: letsencrypt-nginx
       nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
+  tls:
+    - hosts:
+        - www.cinelly.online
+      secretName: letsencrypt-nginx
   rules:
     - host: www.cinelly.online
       http:
@@ -26,3 +30,4 @@ spec:
                 name: jobs
                 port:
                   number: 3000
+  ingressClassName: nginx
